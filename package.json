@@ -1,0 +1,41 @@
+{
+  "name": "wikiup",
+  "version": "0.1.0",
+  "description": "A CLI tool that assits you to lookup and find what you need to know more via Wikipedia in your terminal",
+  "main": "src/index.js",
+  "keywords": [
+    "wikipedia",
+    "wikimedia",
+    "node wikipedia",
+    "commandline wikipedia",
+    "Wikipedia helper",
+    "wikipedia terminal",
+    "terminal wikiup",
+    "wikiup"
+  ],
+  "engines": {
+    "node": ">=4.2.4"
+  },
+  "bin": {
+    "wikiup": "src/index.js"
+  },
+  "scripts": {
+    "test": "mocha test/index.spec.js --reporter spec --timeout 15000"
+  },
+  "author": "Majid Hajian <mhadaily@gmail.com>",
+  "homepage": "https://www.majidhajian.com",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mhadaily/wikiup.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "superagent": "^3.5.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
