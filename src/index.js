@@ -23,12 +23,14 @@ program
 program
   .command('search <yourText>').alias('s')
   .option('-l --lang [language]', 'Language that you need to see results')
+  .option('-rs --resultlimit [resultsLimit]', 'Number of results')
   .description('as easy as typing your phrase or word')
   .action((yourText, options) => {
 
     const lang = options.lang || 'en';
+    const limit = options.resultlimit || 3;
 
-    wikiup(yourText, lang)
+    wikiup(yourText, limit)
       .then(res => {
         const r = res.body.query.search;
         r.map(result => {
@@ -51,11 +53,13 @@ program
     console.log(chalk.red('  Default:'));
     console.log('');
     console.log(`    Target Language is English`);
-    console.log(`    Maximum search limit is 5`);
+    console.log(`    Maximum search limit is 3`);
     console.log('');
     console.log(chalk.cyan('  Usage:'));
     console.log('');
     console.log(`    $ wikiup s "love" `);
+    console.log(`    $ wikiup s "love" --resultlimit 10`);
+    console.log(`    $ wikiup s "love" -rs 10`);
     console.log('');
   });
 

@@ -3,7 +3,7 @@ const chalk = require('chalk');
 
 const {apiUrl} = require('./config');
 
-module.exports = async function (q) {
+module.exports = async function (q, limit = 3) {
   let result = {};
   try {
     result = await request
@@ -13,7 +13,7 @@ module.exports = async function (q) {
       .set('User-Agent', 'WikiUp/0.1')
       .query({action: 'query'})
       .query({srsearch: q})
-      .query({srlimit: 5})
+      .query({srlimit: limit})
       .query({format: 'json'})
       .query({list: 'search'});
   } catch (err) {
