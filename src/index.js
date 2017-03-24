@@ -3,6 +3,7 @@
 const path = require('path');
 const program = require('commander');
 const chalk = require('chalk');
+const url = require('url');
 
 const packagePath = path.join(__dirname, '/../');
 const {version} = require(packagePath + 'package');
@@ -34,10 +35,11 @@ program
       .then(res => {
         const r = res.body.query.search;
         r.map(result => {
-          let title = result.title.replace(' ', '_');
+          let title = result.title;
+          let wikiUrl = url.format(`https://${lang}.wikipedia.org/wiki/${title}`);
           let size = result.size;
           let wordcount = result.wordcount;
-          console.log(`${title}: https://${lang}.wikipedia.org/wiki/${title}`);
+          console.log(`${title}: ${wikiUrl}`);
           console.log(`Size: ${size}, Wordcount: ${wordcount}`);
           console.log(chalk.gray('*****'));
         })
