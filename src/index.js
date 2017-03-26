@@ -4,9 +4,9 @@ const path = require('path');
 const program = require('commander');
 const chalk = require('chalk');
 const url = require('url');
+const fs = require("fs");
 
-const packagePath = path.join(__dirname, '/../');
-const {version} = require(packagePath + 'package');
+const version = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'))).version;
 
 const nodeVersion = Number(process.version.match(/^v(\d)/)[1]);
 
