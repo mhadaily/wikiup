@@ -1,6 +1,6 @@
 {
   "name": "wikiup",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A CLI tool that assits you to lookup and find what you need to know more via Wikipedia in your terminal",
   "main": "src/index.js",
   "keywords": [
@@ -14,7 +14,7 @@
     "wikiup"
   ],
   "engines": {
-    "node": ">=6.9.1"
+    "node": ">=6"
   },
   "bin": {
     "wikiup": "src/index.js"

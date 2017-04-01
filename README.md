@@ -35,11 +35,13 @@ npm test
   Default:
 
     Target Language is English
-    Maximum search limit is 5
+    Default search limit is 3
 
   Usage:
 
     $ wikiup s "love" 
+    $ wikiup s "love"  -r 10
+    $ wikiup s "love"  --result 10
 
 ````
 ## Bug
