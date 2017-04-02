@@ -18,7 +18,7 @@ const shellOpenCommand = {
 request('https://news.ycombinator.com/rss')
   .pipe(new FeedParser())
   .on('error', function(error) {
-    console.log("An error occured");
+    console.log("An error occurred");
   })
   .on('readable', function () {
     var stream = this, item;
