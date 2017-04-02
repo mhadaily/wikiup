@@ -15,6 +15,7 @@ module.exports = async function (q, limit = 3) {
       .query({srsearch: q})
       .query({srlimit: limit})
       .query({format: 'json'})
+      .query({srwhat: 'text'})
       .query({list: 'search'});
   } catch (err) {
     console.log(err);

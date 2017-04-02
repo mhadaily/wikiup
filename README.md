@@ -44,6 +44,12 @@ npm test
     $ wikiup s "love"  --result 10
 
 ````
+## TODOs
+* Ask prompt to open the search result
+* Highlight text within a text search result
+* Possibly add text to speech
+* Search within category and list them 
+
 ## Bug
 
 Please open your issue [HERE](https://github.com/mhadaily/wikiup/issues)

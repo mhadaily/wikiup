@@ -18,6 +18,8 @@ if (nodeVersion < 7) {
   wikiup = require('./modules/wiki-asyncawait');
 }
 
+wikiup('love',3).then(d => console.log())
+
 program
   .version(version);
 
