@@ -4,7 +4,16 @@ const path = require('path');
 const program = require('commander');
 const chalk = require('chalk');
 const url = require('url');
-const fs = require("fs");
+const fs = require('fs');
+const platform = require('os').platform();
+const prompt = require('prompt');
+const exec = require('child_process').exec;
+
+const shellOpenCommand = {
+  'win32': 'start ',
+  'linux': 'xdg-open ',
+  'darwin': 'open ',
+}[platform];
 
 const version = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'))).version;
 
@@ -18,8 +27,6 @@ if (nodeVersion < 7) {
   wikiup = require('./modules/wiki-asyncawait');
 }
 
-wikiup('love',3).then(d => console.log())
-
 program
   .version(version);
 
@@ -29,31 +36,34 @@ program
   .option('-r, --result [result]', 'Number of results')
   .description('as easy as typing your phrase or word')
   .action((yourText, options) => {
-
+    
     const lang = options.lang || 'en';
     const limit = options.result || 3;
-
+    
     wikiup(yourText, limit)
       .then(res => {
         const r = res.body.query.search;
-        r.map(result => {
+        let wikis = [];
+        r.map((result, index) => {
           let title = result.title;
           let wikiUrl = url.format(`https://${lang}.wikipedia.org/wiki/${title}`);
           let size = result.size;
           let wordcount = result.wordcount;
-          console.log(`${title}: ${wikiUrl}`);
+          console.log(`${index + 1}- ${title}: ${wikiUrl}`);
           console.log(`Size: ${size}, Wordcount: ${wordcount}`);
           console.log(chalk.gray('*****'));
-        })
+          wikis = [...wikis, wikiUrl];
+        });
+        promptForWiki(wikis);
       }).catch(err => {
       console.log(err);
       process.exit(0);
     });
-
+    
   });
 
 program
-  .on('--help', function () {
+  .on('--help', function() {
     console.log(chalk.red('  Default:'));
     console.log('');
     console.log(`    Target Language is English`);
@@ -66,6 +76,34 @@ program
     console.log(`    $ wikiup s "love" -r 10`);
     console.log('');
   });
+
+function promptForWiki(wikis) {
+  prompt.start();
+  const schema = {
+    properties: {
+      wikiNumber: {
+        message: 'Type wiki number to open, or 0 to quit',
+        required: true,
+      },
+    },
+  };
+  prompt.get(schema, function(err, result) {
+    
+    if (!result || !result.wikiNumber) return console.log('\r');
+    
+    if (result.wikiNumber !== '0') {
+      let i = parseInt(result.wikiNumber);
+      if (isNaN(i) || i > wikis.length || i < 1) {
+        console.log('Invalid wiki number');
+      } else {
+        exec(shellOpenCommand + `"${wikis[i - 1]}"`, (error) => {
+          if (error) throw error;
+        });
+      }
+      promptForWiki(wikis);
+    }
+  });
+}
 
 program
   .parse(process.argv);

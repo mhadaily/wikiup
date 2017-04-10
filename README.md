@@ -45,7 +45,7 @@ npm test
 
 ````
 ## TODOs
-* Ask prompt to open the search result
+* <strike>Ask prompt to open the search result</strike>
 * Highlight text within a text search result
 * Possibly add text to speech
 * Search within category and list them 
