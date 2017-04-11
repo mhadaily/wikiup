@@ -9,11 +9,13 @@ module.exports = (q, limit = 3) => {
     .type('json')
     .accept('json')
     .set('User-Agent', 'WikiUp/0.1')
-    .query({action: 'query'})
-    .query({srsearch: q})
-    .query({srlimit: limit})
-    .query({format: 'json'})
-    .query({srwhat: 'text'})
-    .query({list: 'search'});
+    .query({
+      action: 'query',
+      srsearch: q,
+      srlimit: limit,
+      format: 'json',
+      srwhat: 'text',
+      list: 'search'
+    })
 };
 
