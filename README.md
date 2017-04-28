@@ -49,6 +49,7 @@ npm test
 * Highlight text within a text search result
 * Possibly add text to speech
 * Search within category and list them 
+* make it ready to run on all node versions
 
 ## Bug
 
