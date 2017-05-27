@@ -2,8 +2,7 @@
 
 **[STILL UNDER DEVELOPMENT, WAITING FOR VERSION 1.0.0 TO BE RELEASED SOON]**
 
-This is a simple CLI tool that helps you to lookup about what you need to know more via Wikipedia.It uses
-Async/Await in Node 7+ and fall back to Promise in Node >= 4 < 7.
+This is a simple CLI tool that helps you to lookup about what you need to know more via Wikipedia and let you open is in your terminal.
 
 ## Installation
 
